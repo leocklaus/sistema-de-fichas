@@ -15,8 +15,8 @@ function CashierSelection() {
         <Wrapper>
             <Label htmlFor="name">Caixa:</Label>
             <Select name="name" onChange={(e) => handleCashierChange(e)}>
-                <option value="leonardo">Leonardo</option>
                 <option value="marina">Marina</option>
+                <option value="leonardo">Leonardo</option>
             </Select>
         </Wrapper>
     )

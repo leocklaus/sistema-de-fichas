@@ -17,8 +17,8 @@ const initialValue = {
 }
 
 const sellers = {
-    leonardo: 1,
-    marina: 2,
+    marina: 1,
+    leonardo: 2,
 }
 
 export const SellersContext = createContext<SellersContextType>(initialValue);

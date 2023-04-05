@@ -5,16 +5,17 @@ import styled from 'styled-components';
 type modalProps = {
     isOpen: boolean,
     handleModal: React.Dispatch<React.SetStateAction<boolean>>,
+    title: string,
     children: JSX.Element,
 }
 
-function Modal({isOpen, handleModal, children}: modalProps) {
+function Modal({isOpen, handleModal, title, children}: modalProps) {
   return (
     <Root open={isOpen} onOpenChange={handleModal}>
       <Portal>
         <DialogOverlay>
           <DialogContent>
-            <FormTitle>ADICIONAR CLIENTE</FormTitle>
+            <FormTitle>{title}</FormTitle>
             {children}
           </DialogContent>
         </DialogOverlay>
@@ -37,7 +38,6 @@ const DialogOverlay = styled(Overlay)`
 
 const DialogContent = styled(Content)`
   width: 490px;
-  height: 290px;
   background-color: var(--main-bg);
   display: flex;
   flex-direction: column;

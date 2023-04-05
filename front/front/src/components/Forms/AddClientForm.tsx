@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import api from '../../helpers/api';
 import { useClientsMutate } from '../../hooks/useClientsMutate';
 
 type AddClientFromProps = {
@@ -30,7 +29,12 @@ function AddClientForm({setModalOpen}: AddClientFromProps) {
     return (
     <Wrapper onSubmit={(e)=> handleSubmit(e)}>
         <Label htmlFor='name'>Nome do Cliente</Label>
-        <TextInput type="text" id="name" value={name} onChange={(e)=> setName(e.target.value)} />
+        <TextInput 
+            type="text" 
+            id="name" 
+            value={name} 
+            onChange={(e)=> setName(e.target.value)} 
+        />
         <Button type="submit">Cadastrar</Button>
     </Wrapper>
     )

@@ -21,7 +21,8 @@ function Index() {
         <AddButton handleClick={() => setModalOpen(true)} />
         <Modal 
           isOpen={isModalOpen} 
-          handleModal={setModalOpen} 
+          handleModal={setModalOpen}
+          title="Adicionar Cliente" 
         >
           <AddClientForm setModalOpen={setModalOpen} />
         </Modal>
