@@ -1,8 +1,7 @@
-import React from 'react';
-import { List, XCircle, Plus } from '@phosphor-icons/react';
+import { List, XCircle, Plus, PencilSimple } from '@phosphor-icons/react';
 import styled from 'styled-components';
 
-type iconsIds = 'menu' | 'close' | 'plus';
+type iconsIds = 'menu' | 'close' | 'plus' | 'edit';
 
 type iconsProps = {
   id: iconsIds,
@@ -15,7 +14,8 @@ function Icons({id, color, size}:iconsProps) {
   const iconsList = {
     menu: List,
     close: XCircle,
-    plus: Plus
+    plus: Plus,
+    edit: PencilSimple,
   }
 
   const Component = iconsList[id];

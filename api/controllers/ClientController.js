@@ -56,7 +56,7 @@ module.exports = class ClientController{
                 model: Transaction,
                 required: false,
                 attributes: ['id', 'description', 'value', 'createdAt', 'CashierId', 'prevAmount', 'partialBallance'],
-                include: [{model: Operation, attributes: ['name']}, {model: Cashier, attributes: ['name']}],
+                include: [{model: Operation, attributes: ['name', 'id']}, {model: Cashier, attributes: ['name']}],
             }]})
 
             if(!client){

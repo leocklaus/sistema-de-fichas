@@ -8,6 +8,7 @@ export type Transaction = {
     partialBallance: number,
     Operation: {
         name: string,
+        id: number,
     },
     Cashier: {
         name: string,
