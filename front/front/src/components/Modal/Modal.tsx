@@ -1,6 +1,9 @@
 import React from 'react';
-import {Root, Portal, Overlay, Content} from '@radix-ui/react-dialog';
+import {Root, Portal, Overlay, Content, Close} from '@radix-ui/react-dialog';
 import styled from 'styled-components';
+
+/* Components */
+import Icons from '../Icons';
 
 type modalProps = {
     isOpen: boolean,
@@ -15,6 +18,12 @@ function Modal({isOpen, handleModal, title, children}: modalProps) {
       <Portal>
         <DialogOverlay>
           <DialogContent>
+            <IconWrapper>
+              <Icons
+                id='close'
+                size={20}
+               />
+            </IconWrapper>
             <FormTitle>{title}</FormTitle>
             {children}
           </DialogContent>
@@ -44,9 +53,28 @@ const DialogContent = styled(Content)`
   align-items: center;
   padding: 22px;
   gap: 38px;
+  position: relative;
 `;
 
-const FormTitle = styled.span``;
+const FormTitle = styled.span`
+  font-size: 20px;
+`;
+
+const IconWrapper = styled(Close)`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: inherit;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  will-change: transform;
+  transition: 100ms ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
 
 
 export default Modal

@@ -22,7 +22,7 @@ function Index() {
         <Modal 
           isOpen={isModalOpen} 
           handleModal={setModalOpen}
-          title="Adicionar Cliente" 
+          title="ADICIONAR CLIENTE" 
         >
           <AddClientForm setModalOpen={setModalOpen} />
         </Modal>

@@ -19,6 +19,7 @@ const GlobalStyles = createGlobalStyle`
         --text-color: #000;
         --add-button-plus-color: #A3A0A0;
         --button-bg: #E22AF2;
+        --button-hover-bg: #e638f5;
         --header-border: #7B7B7B;
         --transaction-item-bg: #ededed;
     }

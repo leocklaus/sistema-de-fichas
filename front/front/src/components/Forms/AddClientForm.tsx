@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { useClientsMutate } from '../../hooks/useClientsMutate';
+
+/* Components */
+import FormButton from './FormComponents/FormButton';
+import FormInput from './FormComponents/FormInput';
+import FormStructure from './FormComponents/FormStructure';
 
 type AddClientFromProps = {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
@@ -18,6 +22,10 @@ function AddClientForm({setModalOpen}: AddClientFromProps) {
         mutate(data);
     }
 
+    const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value);
+    }
+
     const handleModalClose = ()=>{
         setModalOpen((prev)=> !prev)
     }
@@ -27,30 +35,16 @@ function AddClientForm({setModalOpen}: AddClientFromProps) {
     }, [isSuccess]);
 
     return (
-    <Wrapper onSubmit={(e)=> handleSubmit(e)}>
-        <Label htmlFor='name'>Nome do Cliente</Label>
-        <TextInput 
-            type="text" 
-            id="name" 
-            value={name} 
-            onChange={(e)=> setName(e.target.value)} 
+    <FormStructure onSubmitFn={handleSubmit}>
+        <FormInput 
+            title="Nome do Cliente"
+            type="text"
+            value={name}
+            onChangeFn={handleName}
         />
-        <Button type="submit">Cadastrar</Button>
-    </Wrapper>
+        <FormButton type='submit'>Cadastrar</FormButton>
+    </FormStructure>
     )
 }
-
-const Wrapper = styled.form`
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    align-items: center;
-`;
-
-const Label = styled.label``;
-
-const TextInput = styled.input``;
-
-const Button = styled.button``;
 
 export default AddClientForm

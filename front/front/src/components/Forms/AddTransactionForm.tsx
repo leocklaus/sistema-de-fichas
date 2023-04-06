@@ -1,8 +1,14 @@
 import {useState, useContext, useEffect} from 'react';
-import styled from 'styled-components';
 import { SellersContext } from '../../contexts/SellersContext';
 import { useParams } from 'react-router-dom';
 import { useTransactionMutate } from '../../hooks/useTransactionMutate';
+
+/* Components */
+import FormButton from './FormComponents/FormButton';
+import FormInput from './FormComponents/FormInput';
+import FormTextArea from './FormComponents/FormTextArea';
+import FormSelect from './FormComponents/FormSelect';
+import FormStructure from './FormComponents/FormStructure';
 
 type AddTransactionFromProps = {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
@@ -38,62 +44,57 @@ const AddTransactionForm = ({setModalOpen}: AddTransactionFromProps) => {
         mutate(data);
     }
 
+    const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setTransactionValue(Number(e.target.value))
+    }
+
+    const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setDescription(e.target.value)
+    }
+
     const handleModalClose = () => {
         setModalOpen((prev)=> !prev);
     }
+
+    const operations = [
+        {value: 1, name: "Venda"}, 
+        {value: 2, name: "Dinheiro"},
+        {value: 3, name: "Pix"}, 
+        {value: 4, name: "Crédito"},
+        {value: 5, name: "Débito"}, 
+        {value: 6, name: "Cheque"},
+    ]
 
     useEffect(()=>{
         handleModalClose();
     }, [isSuccess])
 
     return (
-        <Wrapper onSubmit={(e) => handleSubmit(e)}>
-            <Label htmlFor='operation'>Selecione a Operação:</Label>
-            <SelectOption 
-                name='operation' 
-                onChange={(e)=> handleOperationChange(e)}
-            >
-                <Option value="1">Venda</Option>
-                <Option value="2">Dinheiro</Option>
-                <Option value="3">Pix</Option>
-                <Option value="4">Crédito</Option>
-                <Option value="5">Débito</Option>
-                <Option value="6">Cheque</Option>
-            </SelectOption>
-            <Label>Valor da Operação:</Label>
-            <TextInput 
-                type='number' 
-                value={transactionValue} 
-                onChange={(e) => setTransactionValue(Number(e.target.value))}
+        <FormStructure onSubmitFn={handleSubmit}>
+
+            <FormSelect 
+                title='Selecione a Operação:'
+                options={operations}
+                onChangeFn={handleOperationChange}
             />
-            <Label htmlFor='description'>Descrição</Label>
-            <TextArea 
-                name='descritpion' 
-                id='description' 
-                value={description} 
-                onChange={(e)=> setDescription(e.target.value)} />
-            <Button type="submit">Cadastrar</Button>
-        </Wrapper>
+         
+            <FormInput 
+                title='Valor da Operação:'
+                type='number'
+                value={transactionValue}
+                onChangeFn={handleValueChange}
+            />
+
+            <FormTextArea 
+                title='Descrição'
+                value={description}
+                onChangeFn={handleDescriptionChange}
+            />
+
+            <FormButton type='submit'>Cadastrar</FormButton>
+
+        </FormStructure>
     )
 }
-
-const Wrapper = styled.form`
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    align-items: center;
-`;
-
-const Label = styled.label``;
-
-const SelectOption = styled.select``;
-
-const Option = styled.option``;
-
-const TextInput = styled.input``;
-
-const TextArea = styled.textarea``;
-
-const Button = styled.button``;
 
 export default AddTransactionForm;

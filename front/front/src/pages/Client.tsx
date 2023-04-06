@@ -20,7 +20,7 @@ function Client() {
             <Modal
                 isOpen={isModalOpen}
                 handleModal={setModalOpen}
-                title="Adicionar Transação"
+                title="ADICIONAR TRANSAÇÃO"
             >
                 <AddTransactionForm setModalOpen={setModalOpen} />
             </Modal>
